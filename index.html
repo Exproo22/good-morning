@@ -12,9 +12,11 @@
 <body>
   <img id="pic" src="" alt="Доброе утро">
   <script>
-    const totalImages = 5; // Укажите здесь количество ваших картинок
-    const randomNum = Math.floor(Math.random() * totalImages) + 1;
-    document.getElementById('pic').src = randomNum + '.jpg';
+    const images = [
+      "1.png"
+    ];
+    const randomImg = images[Math.floor(Math.random() * images.length)];
+    document.getElementById('pic').src = encodeURI(randomImg);
   </script>
 </body>
 </html>
