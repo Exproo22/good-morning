@@ -21,7 +21,7 @@
     }
     img {
       max-width: 100%;
-      max-height: 60vh;
+      max-height: 65vh;
       border-radius: 16px;
       object-fit: contain;
       margin-bottom: 24px;
@@ -33,32 +33,12 @@
       font-weight: 500;
       max-width: 500px;
       white-space: pre-line;
-      margin-bottom: 28px;
-    }
-    .tg-btn {
-      display: inline-block;
-      padding: 14px 28px;
-      background: #24A1DE;
-      color: #fff;
-      text-decoration: none;
-      font-size: 17px;
-      font-weight: 600;
-      border-radius: 999px;
-      box-shadow: 0 4px 16px rgba(36, 161, 222, 0.35);
-      transition: transform 0.15s ease, background 0.15s ease;
-    }
-    .tg-btn:hover {
-      background: #1e8ec4;
-    }
-    .tg-btn:active {
-      transform: scale(0.96);
     }
   </style>
 </head>
 <body>
   <img id="pic" src="" alt="Доброе утро">
   <div id="wish"></div>
-  <a class="tg-btn" href="https://t.me" target="_blank" rel="noopener noreferrer">Пожелать доброе утро ❤️</a>
 
   <script>
     const images = Array.from({ length: 10 }, (_, i) => `${i + 1}.jpg`);
@@ -87,10 +67,14 @@
     const formattedPoems = poems.map(poem => `Доброе утро ❤️ вот твой стих сегодня:\n\n${poem}`);
     const wishes = [...regularWishes, ...formattedPoems];
 
+    // Функция выбора элемента без повторов до конца цикла
     function getNextUniqueItem(items, storageKey) {
       let remaining = JSON.parse(localStorage.getItem(storageKey)) || [];
+      
+      // Оставляем только актуальные элементы (если список изменился)
       remaining = remaining.filter(item => items.includes(item));
 
+      // Если всё уже было показано — начинаем новый цикл
       if (remaining.length === 0) {
         remaining = [...items];
       }
