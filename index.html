@@ -5,18 +5,57 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Доброе утро ❤️</title>
   <style>
-    body { margin: 0; background: #111; display: flex; justify-content: center; align-items: center; height: 100vh; }
-    img { max-width: 100%; max-height: 100vh; object-fit: contain; }
+    body {
+      margin: 0;
+      padding: 20px;
+      background: #111;
+      color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      box-sizing: border-box;
+      text-align: center;
+    }
+    img {
+      max-width: 100%;
+      max-height: 65vh;
+      border-radius: 16px;
+      object-fit: contain;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    }
+    #wish {
+      font-size: 22px;
+      line-height: 1.4;
+      font-weight: 500;
+      max-width: 500px;
+    }
   </style>
 </head>
 <body>
   <img id="pic" src="" alt="Доброе утро">
+  <div id="wish"></div>
+
   <script>
     const images = [
       "1.png"
     ];
+
+    const wishes = [
+      "Доброе утро, любимая! Пусть этот день будет таким же тёплым, как ты ❤️",
+      "С добрым утром, моё солнышко! Я всегда рядом и очень тебя люблю",
+      "Просыпайся с улыбкой! Сегодня тебя ждёт отличный день, я в тебя верю",
+      "Доброе утро! Напоминание на сегодня: ты самая прекрасная ❤️"
+    ];
+
     const randomImg = images[Math.floor(Math.random() * images.length)];
+    const randomWish = wishes[Math.floor(Math.random() * wishes.length)];
+
     document.getElementById('pic').src = encodeURI(randomImg);
+    document.getElementById('wish').textContent = randomWish;
   </script>
 </body>
 </html>
