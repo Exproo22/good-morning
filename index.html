@@ -41,9 +41,7 @@
   <div id="wish"></div>
 
   <script>
-    const images = [
-      "1.png"
-    ];
+    const images = Array.from({ length: 10 }, (_, i) => `${i + 1}.jpg`);
 
     const regularWishes = [
       "Доброе утро, солнце! Пусть этот день будет таким же тёплым, как ты ❤️",
