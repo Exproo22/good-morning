@@ -67,8 +67,27 @@
     const formattedPoems = poems.map(poem => `Доброе утро ❤️ вот твой стих сегодня:\n\n${poem}`);
     const wishes = [...regularWishes, ...formattedPoems];
 
-    const randomImg = images[Math.floor(Math.random() * images.length)];
-    const randomWish = wishes[Math.floor(Math.random() * wishes.length)];
+    // Функция выбора элемента без повторов до конца цикла
+    function getNextUniqueItem(items, storageKey) {
+      let remaining = JSON.parse(localStorage.getItem(storageKey)) || [];
+      
+      // Оставляем только актуальные элементы (если список изменился)
+      remaining = remaining.filter(item => items.includes(item));
+
+      // Если всё уже было показано — начинаем новый цикл
+      if (remaining.length === 0) {
+        remaining = [...items];
+      }
+
+      const randomIndex = Math.floor(Math.random() * remaining.length);
+      const selectedItem = remaining.splice(randomIndex, 1)[0];
+
+      localStorage.setItem(storageKey, JSON.stringify(remaining));
+      return selectedItem;
+    }
+
+    const randomImg = getNextUniqueItem(images, 'morning_used_images');
+    const randomWish = getNextUniqueItem(wishes, 'morning_used_wishes');
 
     document.getElementById('pic').src = encodeURI(randomImg);
     document.getElementById('wish').textContent = randomWish;
